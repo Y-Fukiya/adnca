@@ -1,0 +1,28 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "adnca"
+  author: "Norah Jones"
+  date: "10/28/2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+  downloads: [docx,pdf]
+  
+bibliography: references.bib
+
+format:
+  html:
+    toc: true
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+  docx:
+    toc: true
+    
+editor: visual
+

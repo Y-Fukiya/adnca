@@ -1,0 +1,10 @@
+# 用語/略語 {.unnumbered}
+
+```{r}
+#| echo: false
+rm(list=ls()); gc();  gc();
+options(repos = "https://cran.ism.ac.jp/")
+if (!requireNamespace("renv"  , quietly = T)) {install.packages("renv")}
+if (!requireNamespace("pacman", quietly = T)) {install.packages("pacman")}
+if (!requireNamespace("BiocManager", quietly = T)) {install.packages("BiocManager")}
+```
