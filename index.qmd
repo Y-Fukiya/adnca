@@ -7,4 +7,20 @@ options(repos = "https://cran.ism.ac.jp/")
 if (!requireNamespace("renv"  , quietly = T)) {install.packages("renv")}
 if (!requireNamespace("pacman", quietly = T)) {install.packages("pacman")}
 if (!requireNamespace("BiocManager", quietly = T)) {install.packages("BiocManager")}
+pacman::p_load( googlesheets4
+               ,rio
+               ,tidyverse
+               ,gt
+               ,gtExtras
+               ,DT
+               ,tinytex
+               )
+
+#tinytex::install_tinytex()
+#tinytex::tlmgr_install("haranoaji") # フォントのインストール
+
+t <- googlesheets4::read_sheet("1oEVwlBYODvPJ6dNl5ACvrzG6Zwtqyf3FmPf2ETqX0Bo")
+t |>
+  gt::gt()
+
 ```
