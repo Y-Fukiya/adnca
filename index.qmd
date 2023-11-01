@@ -1,6 +1,7 @@
 # 用語/略語 {.unnumbered}
 
 ```{r}
+#| label: glossary
 #| echo: false
 rm(list=ls()); gc();  gc();
 options(repos = "https://cran.ism.ac.jp/")

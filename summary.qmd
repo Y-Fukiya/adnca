@@ -1,7 +1,8 @@
-# ADNCAの作例事例()
+# ADNCAの作例手順
 
 ```{r}
-
+#| label: adnca-packages
+#| warning: false
 # CRAN から入手可能なパッケージ
 ##############################
 pacman::p_load(
@@ -31,9 +32,15 @@ pacman::p_load(
   # other
   ################################
   styler,
-  parquetize
+  arrow
 )
+```
 
+### Data import
+
+```{r}
+#| label: data-import
+#| warning: false
 # ---- Load Specs for Metacore ----
 path <- here::here()
 metacore <- spec_to_metacore(file.path(path,"meta","pk_spec.xlsx")) %>%
@@ -57,6 +64,68 @@ ex   <- convert_blanks_to_na(ex)
 pc   <- convert_blanks_to_na(pc)
 vs   <- convert_blanks_to_na(vs)
 
+dsname <- "ADPC"
+
+```
+
+### rlang metaprogramming
+
+```{r}
+# attrib function
+attrib_func <- function(data,var){
+  if (requireNamespace("metatools", quietly = T)) {
+  data %>%
+    # Drop unspecified variables from specs
+    metatools::drop_unspec_vars({{var}}) %>%
+    # Check all variables specified are present and no more
+    metatools::check_variables({{var}}) %>%
+    # Checks all variables with CT only contain values within the CT.
+    metatools::check_ct_data({{var}}) %>%
+    # Orders the columns according to the spec
+    metatools::order_cols({{var}}) %>%
+    # Sorts the rows by the sort keys
+    metatools::sort_by_key({{var}})
+  }
+  else {
+    stop("Required 'metatools' package.")
+  }
+}
+
+# xpt export function
+export_xpt <- function(data,var,dir,dsname){
+  if (requireNamespace("xportr", quietly = T)) {
+    data %>%
+      # Coerce variable type to match spec
+      xportr::xportr_type({{var}}) %>%
+      # Assigns SAS length from a variable level metadata
+      xportr::xportr_length({{var}}) %>%
+      # Assigns variable label from metacore specifications
+      xportr::xportr_label({{var}}) %>%
+      # Assigns variable format from metacore specifications
+      xportr::xportr_format({{var}}) %>%
+      # Assigns dataset label from metacore specifications
+      xportr::xportr_df_label({{var}}) %>%
+      # Write xpt v5 transport file
+      xportr::xportr_write(
+        file.path(
+           {{dir}}
+          ,paste(
+             tolower({{dsname}})
+            ,"xpt"
+            ,sep=".")
+        )
+      ) 
+  }
+  else {
+    stop("Required 'xportr' package.")
+  }
+}
+```
+
+### Convertion ADNCA
+
+```{r}
+#| warning: false
 # ---- Derivations ----
 
 # Get list of ADSL vars required for derivations
@@ -179,7 +248,6 @@ adpc_first_dose <- pc_dates %>%
     AVISITN = NFRLT %/% 24 + 1,
     AVISIT = paste("Day", AVISITN),
   )
-
 
 # ---- Find previous dose  ----
 
@@ -490,24 +558,15 @@ dir <- "./output"
 
 # Apply metadata and perform associated checks ----
 # uses {metatools}
+adpc <- attrib_func(adpc_prefinal,metacore)
 
-adpc <- adpc_prefinal %>%
-  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
-  check_variables(metacore) %>% # Check all variables specified are present and no more
-  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT.   
-  order_cols(metacore) %>% # Orders the columns according to the spec
-  sort_by_key(metacore) # Sorts the rows by the sort keys
-
-adpc_xpt <- adpc %>%
-  xportr_type(metacore) %>% # Coerce variable type to match spec
-  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
-  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
-  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
-  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
-  xportr_write(file.path(dir, "adpc.xpt")) # Write xpt v5 transport file
-
+# xpt export function
+export_xpt(adpc,metacore,dir,dsname)
+  
 # ---- Save output ----
 
-#saveRDS(adpc, file = file.path(dir, "adpc.rds"), compress = "bzip2")
-write_parquet_at_once(adpc, dir)
+# parquet format
+write_parquet(
+  adpc, paste(paste(dir,"adpc",sep="/"),"gz.parquet",sep=".")
+              , compression = "gzip", compression_level = 5)
 ```

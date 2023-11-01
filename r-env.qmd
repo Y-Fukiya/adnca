@@ -1,0 +1,24 @@
+## Rプログラムの開発環境とその周辺
+
+Rstudioとgitを用いた開発環境を前提とする。
+
+### server or desktop
+
+1.  Rstudio Server
+    1.  サーバー環境下
+    2.  仮想環境下
+2.  Rstudio Desktop
+
+### パッケージ管理
+
+1.  rproject
+2.  renv
+3.  checkpoint
+
+### 推奨初期設定
+
+1.  pacman
+
+2.  rio
+
+3.  tidyverse
