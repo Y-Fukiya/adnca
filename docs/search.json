@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "臨床薬理に関する解析用標準プログラムの作成",
     "section": "",
-    "text": "用語/略語\n\n\n          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)\nNcells  802330 42.9    1401847 74.9         NA  1401847 74.9\nVcells 1575770 12.1    8388608 64.0      32768  2707229 20.7\n\n\n          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)\nNcells  802658 42.9    1401847 74.9         NA  1401847 74.9\nVcells 1576535 12.1    8388608 64.0      32768  2707229 20.7\n\n\n! Using an auto-discovered, cached token.\n\n\n  To suppress this message, modify your code or options to clearly consent to\n  the use of a cached token.\n\n\n  See gargle's \"Non-interactive auth\" vignette for more details:\n\n\n  &lt;https://gargle.r-lib.org/articles/non-interactive-auth.html&gt;\n\n\nℹ The googlesheets4 package is using a cached token for\n  'yoshihiro.fukiya@gmail.com'.\n\n\n✖ Request failed [503]. Retry 1 happens in 6.5 seconds ...\n\n\n✔ Reading from \"用語と定義\".\n\n\n✔ Range 'japanease'.\n\n\n\n\n\n\n  \n    \n    \n      略語/用語\n      説明\n    \n  \n  \n    ADaM\nAnalysis Data Model\n    ADME\nAbsorption（吸収）、Distribution （布）、Metabolism（代謝） and Excretion（排泄）\n    ADPC\nAnalysis Dataset for Pharmacokinetics Concentrations\n    ADPP\nAnalysis Dataset for Pharmacokinetics Parameters\n    BE\n生物学的同等性（Bioequivalence）\n    BLQ\n定量下限未満 （Below Lower limit-of Quantification）\n    CDISC\nClinical Data Interchange Standards Consortium\n    CRF\n症例報告書（Case Report Form）\n    СТ\nControlled Terminology\n    DDI\n棊物間相互作用（Drug-DrugInteraction）\n    EDC\n電子的臨床検査情報収集（Electronic Data Capture）\n    Full-PK\n個々の被験者でトラフなど特定の時期に限定せずに投与後のさまざまな時間帯に採血を行うことによる薬物動態評価\n    h\nHour （WinNonlin 上はhrとなるがCTの用語に合わせた）\n    LLOQ\n定量下限（Lower Limit Of Quantification）\n    NCA\nノンコンパートメント解析\n    PC\nPharmacokinetics Concentrations\n    PK\n薬物動態（学）（Pharmacokinetic （s））\n    PP\nPharmacokinetics Parameters\n    SDTM\nStudy Data Tabulation Model\n    PPK\n母集団薬物動態解析（Population Pharmacokinetics）\n    WinNonlin\nPhoenix・WinNonlin（NCA用の解析ソフト）\n    TLF(s)\n図表及び一覧表（Table Listing Figures）"
+    "text": "用語/略語"
   },
   {
     "objectID": "intro.html",
@@ -30,9 +30,9 @@
   {
     "objectID": "r-env.html",
     "href": "r-env.html",
-    "title": "2  Rプログラムの開発環境",
+    "title": "2  Rプログラムの開発環境とその周辺",
     "section": "",
-    "text": "Rstudioとgitを用いた開発環境を前提とする。"
+    "text": "Rstudioとgitを用いた開発環境を前提とする。\n\n2.0.1 server or desktop\n\nRstudio Server\n\nサーバー環境下\n仮想環境下\n\nRstudio Desktop\n\n\n\n2.0.2 パッケージ管理\n\nrproject\nrenv\ncheckpoint\n\n\n\n2.0.3 推奨初期設定\n\npacman\nrio\ntidyverse"
   },
   {
     "objectID": "tidyverse.html",

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>臨床薬理に関する解析用標準プログラムの作成 - 2&nbsp; Rプログラムの開発環境</title>
+<title>臨床薬理に関する解析用標準プログラムの作成 - 2&nbsp; Rプログラムの開発環境とその周辺</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r-env.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rプログラムの開発環境</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r-env.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rプログラムの開発環境とその周辺</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-env.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rプログラムの開発環境</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rプログラムの開発環境とその周辺</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -151,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ADNCAの作例事例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ADNCAの作例手順</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -166,14 +166,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#server-or-desktop" id="toc-server-or-desktop" class="nav-link active" data-scroll-target="#server-or-desktop"><span class="header-section-number">2.0.1</span> server or desktop</a></li>
+  <li><a href="#パッケージ管理" id="toc-パッケージ管理" class="nav-link" data-scroll-target="#パッケージ管理"><span class="header-section-number">2.0.2</span> パッケージ管理</a></li>
+  <li><a href="#推奨初期設定" id="toc-推奨初期設定" class="nav-link" data-scroll-target="#推奨初期設定"><span class="header-section-number">2.0.3</span> 推奨初期設定</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rプログラムの開発環境</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rプログラムの開発環境とその周辺</span></h1>
 </div>
 
 
@@ -189,8 +197,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Rstudioとgitを用いた開発環境を前提とする。</p>
+<section id="server-or-desktop" class="level3" data-number="2.0.1">
+<h3 data-number="2.0.1" class="anchored" data-anchor-id="server-or-desktop"><span class="header-section-number">2.0.1</span> server or desktop</h3>
+<ol type="1">
+<li>Rstudio Server
+<ol type="1">
+<li>サーバー環境下</li>
+<li>仮想環境下</li>
+</ol></li>
+<li>Rstudio Desktop</li>
+</ol>
+</section>
+<section id="パッケージ管理" class="level3" data-number="2.0.2">
+<h3 data-number="2.0.2" class="anchored" data-anchor-id="パッケージ管理"><span class="header-section-number">2.0.2</span> パッケージ管理</h3>
+<ol type="1">
+<li>rproject</li>
+<li>renv</li>
+<li>checkpoint</li>
+</ol>
+</section>
+<section id="推奨初期設定" class="level3" data-number="2.0.3">
+<h3 data-number="2.0.3" class="anchored" data-anchor-id="推奨初期設定"><span class="header-section-number">2.0.3</span> 推奨初期設定</h3>
+<ol type="1">
+<li><p>pacman</p></li>
+<li><p>rio</p></li>
+<li><p>tidyverse</p></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
