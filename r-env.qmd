@@ -18,7 +18,5 @@ Rstudioとgitを用いた開発環境を前提とする。
 ### 推奨初期設定
 
 1.  pacman
-
 2.  rio
-
 3.  tidyverse

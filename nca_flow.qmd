@@ -1,0 +1,76 @@
+## NCA実施の事例
+
+```{r}
+#| label: nca-packages
+#| warning: false
+# CRAN から入手可能なパッケージ
+##############################
+pacman::p_load(
+  # 一般的なデータ管理
+  ####################
+  tidyverse, 
+  magrittr, 
+  
+  # パッケージのインストールと管理
+  ################################
+  pacman,   # パッケージのインストール・読み込み
+  renv,     # グループで作業する際のパッケージのバージョン管理  
+  
+  # プロジェクトとファイルの管理
+  ##############################
+  here,     # Rのプロジェクトフォルダを基準とするファイルパス
+  rio,      # 様々なタイプのデータのインポート・エクスポート
+  
+  # 臨床薬理領域系の解析パッケージ
+  ################################
+  NonCompart, # NCA処理するバッケージ
+  ncar        # NonCompartの拡張版
+)
+```
+
+```{r}
+#| label: nca
+#| warning: false
+
+adsl <- import("./output/adsl.xpt")
+adpc <- import("./output/adpc.xpt")
+
+## Xanomeline Low Dose
+nca_low  <- adpc %>%
+  filter(TRT01A=="Xanomeline Low Dose" & 
+        PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
+  tblNCA(  .
+         , key     = "SUBJID"
+         , colTime = "MRRLT"
+         , colConc = "AVAL"
+         , dose    =  54
+         , adm     = "Extravascular"
+         , dur     =  0
+         , doseUnit = "mg"
+         , timeUnit = "h"
+         , concUnit = "ug/mL"
+         , down     = "Linear") %>%
+  mutate(TRT01A="Xanomeline Low Dose")
+
+## Xanomeline High Dose
+nca_hi  <- adpc %>%
+  filter(TRT01A=="Xanomeline High Dose" & 
+        PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
+  tblNCA(  .
+         , key     = "SUBJID"
+         , colTime = "MRRLT"
+         , colConc = "AVAL"
+         , dose    =  81
+         , adm     = "Extravascular"
+         , dur     =  0
+         , doseUnit = "mg"
+         , timeUnit = "h"
+         , concUnit = "ug/mL"
+         , down     = "Linear") %>%
+  mutate(TRT01A="Xanomeline High Dose")
+
+# output
+nca <- rbind(nca_low, nca_hi )
+export(nca, "./output/nca.sas7bdat")
+
+```

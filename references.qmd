@@ -1,4 +1,5 @@
 # References {.unnumbered}
 
-::: {#refs}
-:::
+1.  [pharmaverse](https://pharmaverse.org/)
+2.  [Tables in Clinical Trials with R](https://rconsortium.github.io/rtrs-wg/)
+3.  [R Programming and Pharmaceutical Data Analysis (Packages for Clinical Trial Data)](https://appsilon.com/pharmaceutical-and-clinical-trial-data-analysis-packages/)

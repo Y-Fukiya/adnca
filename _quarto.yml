@@ -11,8 +11,12 @@ book:
     - intro.qmd
     - r-env.qmd
     - tidyverse.qmd
-    - adnca.qmd
-    - summary.qmd
+    - adnca_desc.qmd
+    - adnca_flow.qmd
+    - nca_desc.qmd
+    - nca_flow.qmd
+    - output_desc.qmd
+    - output_flow.qmd
     - references.qmd
   downloads: [docx,pdf]
   
