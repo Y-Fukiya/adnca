@@ -3,3 +3,4 @@
 1.  [pharmaverse](https://pharmaverse.org/)
 2.  [Tables in Clinical Trials with R](https://rconsortium.github.io/rtrs-wg/)
 3.  [R Programming and Pharmaceutical Data Analysis (Packages for Clinical Trial Data)](https://appsilon.com/pharmaceutical-and-clinical-trial-data-analysis-packages/)
+4.  [Tidytlg: An R Package for Clinical Reporting Using Tidyverse](https://phuse.s3.eu-central-1.amazonaws.com/Archive/2023/Connect/US/Florida/PAP_OS02.pdf)

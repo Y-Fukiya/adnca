@@ -1,3 +1,38 @@
 ## TLG作成のパッケージの説明
 
-絶賛更新中
+-   style別
+
+    -   Merick's style
+        -   r2rtf
+    -   Atorus's style
+        -   Tplyr
+        -   pharmaRTF
+    -   Roche's style
+        -   rtables
+        -   terns
+    -   GSK's style
+        -   tfrmt
+    -   posit's style
+        -   gt
+        -   gtsummary
+    -   Pharmaverse's style
+        -   tidytlg
+
+-   PK TLGs
+
+    -   Listings for PK parameters
+        -   listing of individual PK parameters in plasma -- one parameter per row
+        -   listing of individual PK parameters in plasma --parameters on column
+    -   Listings for PK concentrations
+        -   listing of individual PK concentrations in plasma
+        -   listing of individual PK concentrations in urine
+    -   Figures for PK concentration-time profiles
+        -   overlaying PK concentration-time profiles
+        -   individual PK concentration-time profiles
+        -   mean PK concentration-time profiles
+    -   Tables for summary of PK parameters
+        -   summary of PK parameters
+    -   Tables for summary of PK concentrations
+        -   summary of PK concentration, when BLQ values are imputed or left missing
+        -   summary of PK concentration, when BQL values are left censored
+        -   summary of PK concentration, with time in columns

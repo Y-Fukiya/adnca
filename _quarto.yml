@@ -4,8 +4,8 @@ project:
 
 book:
   title: "臨床薬理に関する解析用標準プログラムの作成"
-  author: "CDISC Japan User Group/ADaM therma 6"
-  date: "11/1/2023"
+  author: "CDISC Japan User Group/ADaM therma 3"
+  date: "1/11/2024"
   chapters:
     - index.qmd
     - intro.qmd
