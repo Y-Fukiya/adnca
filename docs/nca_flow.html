@@ -273,10 +273,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>adsl <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"./output/adsl.xpt"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>adpc <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"./output/adpc.xpt"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>adnca <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"./output/adnca.xpt"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Xanomeline Low Dose</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nca_low  <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nca_low  <span class="ot">&lt;-</span> adnca <span class="sc">%&gt;%</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TRT01A<span class="sc">==</span><span class="st">"Xanomeline Low Dose"</span> <span class="sc">&amp;</span> </span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        PARAMCD<span class="sc">==</span><span class="st">"XAN"</span> <span class="sc">&amp;</span> ATPTREF<span class="sc">==</span><span class="st">"Day 1"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tblNCA</span>(  .</span>
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TRT01A=</span><span class="st">"Xanomeline Low Dose"</span>)</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Xanomeline High Dose</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>nca_hi  <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>nca_hi  <span class="ot">&lt;-</span> adnca <span class="sc">%&gt;%</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TRT01A<span class="sc">==</span><span class="st">"Xanomeline High Dose"</span> <span class="sc">&amp;</span> </span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        PARAMCD<span class="sc">==</span><span class="st">"XAN"</span> <span class="sc">&amp;</span> ATPTREF<span class="sc">==</span><span class="st">"Day 1"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tblNCA</span>(  .</span>

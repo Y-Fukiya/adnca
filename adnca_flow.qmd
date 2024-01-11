@@ -44,7 +44,7 @@ pacman::p_load(
 # ---- Load Specs for Metacore ----
 path <- here::here()
 metacore <- spec_to_metacore(file.path(path,"meta","pk_spec.xlsx")) %>%
-  select_dataset("ADPC")
+  select_dataset("ADNCA")
 
 # ---- Load source datasets ----
 
@@ -64,7 +64,7 @@ ex   <- convert_blanks_to_na(ex)
 pc   <- convert_blanks_to_na(pc)
 vs   <- convert_blanks_to_na(vs)
 
-dsname <- "ADPC"
+dsname <- "ADNCA"
 
 ```
 
@@ -231,7 +231,7 @@ ex_exp <- ex_dates %>%
 # ---- Find first dose per treatment per subject ----
 # ---- Join with ADPC data and keep only subjects with dosing ----
 
-adpc_first_dose <- pc_dates %>%
+adnca_first_dose <- pc_dates %>%
   derive_vars_merged(
     dataset_add = ex_exp,
     filter_add = (EXDOSE > 0 & !is.na(ADTM)),
@@ -251,7 +251,7 @@ adpc_first_dose <- pc_dates %>%
 
 # ---- Find previous dose  ----
 
-adpc_prev <- adpc_first_dose %>%
+adnca_prev <- adnca_first_dose %>%
   derive_vars_joined(
     dataset_add = ex_exp,
     by_vars = exprs(USUBJID),
@@ -271,7 +271,7 @@ adpc_prev <- adpc_first_dose %>%
 
 # ---- Find next dose  ----
 
-adpc_next <- adpc_prev %>%
+adnca_next <- adnca_prev %>%
   derive_vars_joined(
     dataset_add = ex_exp,
     by_vars = exprs(USUBJID),
@@ -291,7 +291,7 @@ adpc_next <- adpc_prev %>%
 
 # ---- Find previous nominal time ----
 
-adpc_nom_prev <- adpc_next %>%
+adnca_nom_prev <- adnca_next %>%
   derive_vars_joined(
     dataset_add = ex_exp,
     by_vars = exprs(USUBJID),
@@ -306,7 +306,7 @@ adpc_nom_prev <- adpc_next %>%
 
 # ---- Find next nominal time ----
 
-adpc_nom_next <- adpc_nom_prev %>%
+adnca_nom_next <- adnca_nom_prev %>%
   derive_vars_joined(
     dataset_add = ex_exp,
     by_vars = exprs(USUBJID),
@@ -322,7 +322,7 @@ adpc_nom_next <- adpc_nom_prev %>%
 # ---- Combine ADPC and EX data ----
 # Derive Relative Time Variables
 
-adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
+adnca_arrlt <- bind_rows(adnca_nom_next, ex_exp) %>%
   group_by(USUBJID, DRUG) %>%
   mutate(
     FANLDTM = min(FANLDTM, na.rm = TRUE),
@@ -378,7 +378,7 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
 
 # Derive Nominal Relative Time from Reference Dose (NRRLT)
 
-adpc_nrrlt <- adpc_arrlt %>%
+adnca_nrrlt <- adnca_arrlt %>%
   mutate(
     NRRLT = case_when(
       EVID == 1 ~ 0,
@@ -397,7 +397,7 @@ adpc_nrrlt <- adpc_arrlt %>%
 # Derive PARAMCD and relative time units
 # Derive AVAL, AVALU and AVALCAT1
 
-adpc_aval <- adpc_nrrlt %>%
+adnca_aval <- adnca_nrrlt %>%
   mutate(
     ATPTN = case_when(
       EVID == 1 ~ 0,
@@ -464,7 +464,7 @@ adpc_aval <- adpc_nrrlt %>%
 
 # ---- Create DTYPE copy records ----
 
-dtype <- adpc_aval %>%
+dtype <- adnca_aval %>%
   filter(NFRLT > 0 & NXRLT == 0 & EVID == 0 & !is.na(AVISIT_next)) %>%
   select(-PCRFTDT, -PCRFTTM) %>%
   # Re-derive variables in for DTYPE copy records
@@ -486,7 +486,7 @@ dtype <- adpc_aval %>%
 
 # ---- Combine original records and DTYPE copy records ----
 
-adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
+adnca_dtype <- bind_rows(adnca_aval, dtype) %>%
   arrange(STUDYID, USUBJID, BASETYPE, ADTM, NFRLT) %>%
   mutate(
     # Derive MRRLT, ANL01FL and ANL02FL
@@ -497,7 +497,7 @@ adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
 
 # ---- Derive BASE and Calculate Change from Baseline ----
 
-adpc_base <- adpc_dtype %>%
+adnca_base <- adnca_dtype %>%
   derive_var_base(
     by_vars = exprs(STUDYID, USUBJID, PARAMCD, BASETYPE),
     source_var = AVAL,
@@ -505,11 +505,11 @@ adpc_base <- adpc_dtype %>%
     filter = ABLFL == "Y"
   )
 
-adpc_chg <- derive_var_chg(adpc_base)
+adnca_chg <- derive_var_chg(adnca_base)
 
 # ---- Add ASEQ ----
 
-adpc_aseq <- adpc_chg %>%
+adnca_aseq <- adnca_chg %>%
   # Calculate ASEQ
   derive_var_obs_number(
     new_var = ASEQ,
@@ -523,7 +523,7 @@ adpc_aseq <- adpc_chg %>%
 
 #---- Derive additional baselines from VS ----
 
-adpc_baselines <- adpc_aseq %>%
+adnca_baselines <- adnca_aseq %>%
   derive_vars_merged(
     dataset_add = vs,
     filter_add = VSTESTCD == "HEIGHT",
@@ -544,7 +544,7 @@ adpc_baselines <- adpc_aseq %>%
 # ---- Add all ADSL variables ----
 
 # Add all ADSL variables
-adpc_prefinal <- adpc_baselines %>%
+adnca_prefinal <- adnca_baselines %>%
   derive_vars_merged(
     dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
     by_vars = exprs(STUDYID, USUBJID)
@@ -558,16 +558,16 @@ dir <- "./output"
 
 # Apply metadata and perform associated checks ----
 # uses {metatools}
-adpc <- attrib_func(adpc_prefinal,metacore)
+adnca <- attrib_func(adnca_prefinal,metacore)
 
 # xpt export function
-export_xpt(adpc,metacore,dir,dsname)
+export_xpt(adnca,metacore,dir,dsname)
   
 # ---- Save output ----
 
 # parquet format
 write_parquet(
-  adpc, paste(paste(dir,"adpc",sep="/"),"gz.parquet",sep=".")
+  adpc, paste(paste(dir,"adnca",sep="/"),"gz.parquet",sep=".")
               , compression = "gzip", compression_level = 5)
 
 export(adsl, "./output/adsl.xpt")

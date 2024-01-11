@@ -45,7 +45,7 @@ pacman::p_load(
 
 nca  <- import("./output/nca.sas7bdat")
 adsl <- import("./output/adsl.xpt")
-adpc <- import("./output/adpc.xpt")
+adnca <- import("./output/adnca.xpt")
 
 nca_t  <- nca %>% 
   pivot_longer(  -c(SUBJID,TRT01A)
@@ -178,7 +178,7 @@ pharmaRTF::write_rtf(doc, file='./output/table_14.2.01.rtf')
 
 ################################################################################
 
-p1 <- adpc %>% 
+p1 <- adnca %>% 
   filter(TRT01A=="Xanomeline Low Dose" & 
         PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
   ggplot(.,aes(x=MRRLT,y=AVAL,group=SUBJID))+
@@ -191,7 +191,7 @@ p1 <- adpc %>%
   theme_bw()+ 
   theme(legend.position = "none",plot.title = element_text(hjust = 0.5)) 
 
-p2<- adpc %>% 
+p2<- adnca %>% 
   filter(TRT01A=="Xanomeline Low Dose" & 
         PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
   ggplot(.,aes(x=MRRLT,y=AVAL,group=SUBJID))+
@@ -209,7 +209,7 @@ p2<- adpc %>%
 
 p1 + p2
 
-p3 <- adpc %>% 
+p3 <- adnca %>% 
   filter(TRT01A=="Xanomeline High Dose" & 
         PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
   ggplot(.,aes(x=MRRLT,y=AVAL,group=SUBJID))+
@@ -222,7 +222,7 @@ p3 <- adpc %>%
   theme_bw()+ 
   theme(legend.position = "none",plot.title = element_text(hjust = 0.5)) 
 
-p4 <- adpc %>% 
+p4 <- adnca %>% 
   filter(TRT01A=="Xanomeline High Dose" & 
         PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
   ggplot(.,aes(x=MRRLT,y=AVAL,group=SUBJID))+

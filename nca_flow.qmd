@@ -33,10 +33,10 @@ pacman::p_load(
 #| warning: false
 
 adsl <- import("./output/adsl.xpt")
-adpc <- import("./output/adpc.xpt")
+adnca <- import("./output/adnca.xpt")
 
 ## Xanomeline Low Dose
-nca_low  <- adpc %>%
+nca_low  <- adnca %>%
   filter(TRT01A=="Xanomeline Low Dose" & 
         PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
   tblNCA(  .
@@ -53,7 +53,7 @@ nca_low  <- adpc %>%
   mutate(TRT01A="Xanomeline Low Dose")
 
 ## Xanomeline High Dose
-nca_hi  <- adpc %>%
+nca_hi  <- adnca %>%
   filter(TRT01A=="Xanomeline High Dose" & 
         PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
   tblNCA(  .
