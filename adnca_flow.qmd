@@ -1,5 +1,7 @@
 # ADNCAの作例手順
 
+### 必要なパッケージの準備
+
 ```{r}
 #| label: adnca-packages
 #| warning: false
@@ -36,7 +38,7 @@ pacman::p_load(
 )
 ```
 
-### Data import
+### データの読み込み
 
 ```{r}
 #| label: data-import
@@ -68,7 +70,7 @@ dsname <- "ADNCA"
 
 ```
 
-### rlang metaprogramming
+### 自作関数の準備（メタプログラミング的処理）
 
 ```{r}
 # attrib function
@@ -122,7 +124,7 @@ export_xpt <- function(data,var,dir,dsname){
 }
 ```
 
-### Convertion ADNCA
+### ADNCAへの変換プロセス
 
 ```{r}
 #| warning: false
@@ -229,7 +231,7 @@ ex_exp <- ex_dates %>%
   derive_vars_dy(reference_date = TRTSDT, source_vars = exprs(ADT))
 
 # ---- Find first dose per treatment per subject ----
-# ---- Join with ADPC data and keep only subjects with dosing ----
+# ---- Join with adnca data and keep only subjects with dosing ----
 
 adnca_first_dose <- pc_dates %>%
   derive_vars_merged(
@@ -319,7 +321,7 @@ adnca_nom_next <- adnca_nom_prev %>%
     check_type = "none"
   )
 
-# ---- Combine ADPC and EX data ----
+# ---- Combine adnca and EX data ----
 # Derive Relative Time Variables
 
 adnca_arrlt <- bind_rows(adnca_nom_next, ex_exp) %>%
@@ -567,12 +569,12 @@ export_xpt(adnca,metacore,dir,dsname)
 
 # parquet format
 write_parquet(
-  adpc, paste(paste(dir,"adnca",sep="/"),"gz.parquet",sep=".")
+  adnca, paste(paste(dir,"adnca",sep="/"),"gz.parquet",sep=".")
               , compression = "gzip", compression_level = 5)
 
 export(adsl, "./output/adsl.xpt")
 
 write_parquet(
-  adpc, paste(paste(dir,"adsl",sep="/"),"gz.parquet",sep=".")
+  adnca, paste(paste(dir,"adsl",sep="/"),"gz.parquet",sep=".")
               , compression = "gzip", compression_level = 5)
 ```

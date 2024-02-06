@@ -1,22 +1,6 @@
-## TLG作成のパッケージの説明
+## TLGパッケージの説明
 
--   style別
-
-    -   Merick's style
-        -   r2rtf
-    -   Atorus's style
-        -   Tplyr
-        -   pharmaRTF
-    -   Roche's style
-        -   rtables
-        -   terns
-    -   GSK's style
-        -   tfrmt
-    -   posit's style
-        -   gt
-        -   gtsummary
-    -   Pharmaverse's style
-        -   tidytlg
+TLGの作成例として「Analyses and Displays Associated to Non-Compartmental Pharmacokinetics – with a focus on clinical trials」からTLGの作成例が以下の項目となる。今回は、「Tables for summary of PK parameters」と「Figures for mean PK concentration-time profiles」に絞って説明を行う。
 
 -   PK TLGs
 
@@ -36,3 +20,25 @@
         -   summary of PK concentration, when BLQ values are imputed or left missing
         -   summary of PK concentration, when BQL values are left censored
         -   summary of PK concentration, with time in columns
+
+「[Tables in Clinical Trials with R](https://rconsortium.github.io/rtrs-wg/)」と「[R Programming and Pharmaceutical Data Analysis (Packages for Clinical Trial Data)](https://appsilon.com/pharmaceutical-and-clinical-trial-data-analysis-packages/)」を参考に、TLGに関するパッケージについてスタイルごとに分類した。
+
+-   style別
+
+    -   Merick's style
+        -   r2rtf
+    -   Atorus's style
+        -   Tplyr
+        -   pharmaRTF
+    -   Roche's style
+        -   rtables
+        -   terns
+    -   GSK's style
+        -   tfrmt
+    -   posit's style
+        -   gt
+        -   gtsummary
+    -   Pharmaverse's style
+        -   tidytlg
+
+今回は、カスタムで要約統計量の追加が可能な「Tplyr」を用いてTableを作成し、outputを「pharmaRTF」を用いてRTF出力を行った。またFigureについては「ggplot2」と「patchwork」で作図を行い、「tidytlg」を用いてRTFの出力を行った。

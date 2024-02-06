@@ -9,18 +9,21 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
-    - r-env.qmd
-    - tidyverse.qmd
+#    - r-env.qmd
+#    - tidyverse.qmd
     - adnca_desc.qmd
     - adnca_flow.qmd
     - nca_desc.qmd
     - nca_flow.qmd
     - output_desc.qmd
     - output_flow.qmd
+    - output_flow2.qmd
+#   - output_flow2.qmd
     - references.qmd
-  downloads: [docx,pdf]
-  
+    
 bibliography: references.bib
+
+lang: jp
 
 format:
   html:
@@ -29,9 +32,17 @@ format:
     toc: true
     toc-depth: 3
     number-sections: true
-lang: "ja"
-pdf-engine: lualatex
-documentclass: ltjsarticle 
+    documentclass: scrreprt
+#    include-in-header: 
+#      text: |
+#        \usepackage{makeidx}
+#        \makeindex
+#    include-after-body: 
+#      text: |
+#        \printindex
+  docx:
+    reference-doc: custom-reference.docx
     
+pdf-engine: lualatex
+documentclass: ltjsarticle
 editor: visual
-

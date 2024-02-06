@@ -4,3 +4,5 @@
 2.  [Tables in Clinical Trials with R](https://rconsortium.github.io/rtrs-wg/)
 3.  [R Programming and Pharmaceutical Data Analysis (Packages for Clinical Trial Data)](https://appsilon.com/pharmaceutical-and-clinical-trial-data-analysis-packages/)
 4.  [Tidytlg: An R Package for Clinical Reporting Using Tidyverse](https://phuse.s3.eu-central-1.amazonaws.com/Archive/2023/Connect/US/Florida/PAP_OS02.pdf)
+5.  Kim H, Han S, Cho YS, Yoon SK, Bae KS. Development of R packages: '*NonCompart*' and '*ncar*' for noncompartmental analysis (NCA). Transl Clin Pharmacol. 2018 Mar;26(1):10-15. doi: 10.12793/tcp.2018.26.1.10. Epub 2018 Mar 16. Erratum in: Transl Clin Pharmacol. 2018 Sep;26(3):141. PMID: 32055542; PMCID: PMC6989226. [link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6989226/)
+

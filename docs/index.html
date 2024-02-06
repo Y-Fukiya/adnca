@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="jp" xml:lang="jp"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.361">
@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="CDISC Japan User Group/ADaM therma 3">
+<meta name="dcterms.date" content="2024-01-11">
 
 <title>臨床薬理に関する解析用標準プログラムの作成</title>
 <style>
@@ -49,16 +50,16 @@ ul.task-list li input[type="checkbox"] {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "一致なし",
-    "search-matching-documents-text": "一致した文書",
-    "search-copy-link-title": "検索へのリンクをコピー",
-    "search-hide-matches-text": "追加の検索結果を非表示",
-    "search-more-match-text": "追加の検索結果",
-    "search-more-matches-text": "追加の検索結果",
-    "search-clear-button-title": "消去",
-    "search-detached-cancel-button-title": "取消",
-    "search-submit-button-title": "検索",
-    "search-label": "サーチ"
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -67,15 +68,16 @@ ul.task-list li input[type="checkbox"] {
 
 <body class="nav-sidebar floating">
 
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">用語/略語</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">用語・略語</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -90,30 +92,11 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">臨床薬理に関する解析用標準プログラムの作成</a> 
-        <div class="sidebar-tools-main">
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./臨床薬理に関する解析用標準プログラムの作成.docx">
-              <i class="bi bi-bi-file-word pe-1"></i>
-            Download Docx
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./臨床薬理に関する解析用標準プログラムの作成.pdf">
-              <i class="bi bi-bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-      </ul>
-    </div>
-</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="サーチ"></div>
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -121,61 +104,55 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">用語/略語</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">用語・略語</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./r-env.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rプログラムの開発環境とその周辺</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidyverseの説明</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">はじめに</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./adnca_desc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ADNCAの変数の説明</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">ADNCAの変数の説明</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./adnca_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ADNCAの作例手順</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ADNCAの作例手順</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nca_desc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">NCAパッケージの説明</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NCAパッケージの説明</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nca_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">NCA実施の事例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">NCA実施の事例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./output_desc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">TLG作成のパッケージの説明</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">TLGパッケージの説明</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./output_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">TLG作成の事例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">TLG事例/Table output(Atorus’s style)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./output_flow2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">TLG事例/Figure output(Pharmaverse’s style)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -191,10 +168,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目次</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#用語略語" id="toc-用語略語" class="nav-link active" data-scroll-target="#用語略語">用語/略語</a></li>
+  <li><a href="#用語略語" id="toc-用語略語" class="nav-link active" data-scroll-target="#用語略語"><span class="header-section-number">1</span> 用語・略語</a></li>
   </ul>
 </nav>
     </div>
@@ -211,16 +188,16 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">作者</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
              <p>CDISC Japan User Group/ADaM therma 3 </p>
           </div>
   </div>
     
     <div>
-    <div class="quarto-title-meta-heading">公開</div>
+    <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024年1月11日</p>
+      <p class="date">January 11, 2024</p>
     </div>
   </div>
   
@@ -230,8 +207,114 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="用語略語" class="level1 unnumbered">
-<h1 class="unnumbered">用語/略語</h1>
+<section id="用語略語" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 用語・略語</h1>
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>略語/用語</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ADaM</td>
+<td>Analysis Data Model</td>
+</tr>
+<tr class="even">
+<td>ADME</td>
+<td>Absorption（吸収）、Distribution （布）、Metabolism（代謝） and Excretion（排泄）</td>
+</tr>
+<tr class="odd">
+<td>ADNCA</td>
+<td>Analysis Dataset for Non-compartmental analysis</td>
+</tr>
+<tr class="even">
+<td>ADPC</td>
+<td>Analysis Dataset for Pharmacokinetics Concentrations</td>
+</tr>
+<tr class="odd">
+<td>ADPP</td>
+<td>Analysis Dataset for Pharmacokinetics Parameters</td>
+</tr>
+<tr class="even">
+<td>BE</td>
+<td>生物学的同等性（Bioequivalence）</td>
+</tr>
+<tr class="odd">
+<td>BLQ</td>
+<td>定量下限未満 （Below Lower limit-of Quantification）</td>
+</tr>
+<tr class="even">
+<td>CDISC</td>
+<td>Clinical Data Interchange Standards Consortium</td>
+</tr>
+<tr class="odd">
+<td>CRF</td>
+<td>症例報告書（Case Report Form）</td>
+</tr>
+<tr class="even">
+<td>СТ</td>
+<td>Controlled Terminology</td>
+</tr>
+<tr class="odd">
+<td>DDI</td>
+<td>棊物間相互作用（Drug-DrugInteraction）</td>
+</tr>
+<tr class="even">
+<td>EDC</td>
+<td>電子的臨床検査情報収集（Electronic Data Capture）</td>
+</tr>
+<tr class="odd">
+<td>Full-PK</td>
+<td>個々の被験者でトラフなど特定の時期に限定せずに投与後のさまざまな時間帯に採血を行うことによる薬</td>
+</tr>
+<tr class="even">
+<td>h</td>
+<td>Hour （WinNonlin 上はhrとなるがCTの用語に合わせた）</td>
+</tr>
+<tr class="odd">
+<td>LLOQ</td>
+<td>定量下限（Lower Limit Of Quantification）</td>
+</tr>
+<tr class="even">
+<td>NCA</td>
+<td>ノンコンパートメント解析</td>
+</tr>
+<tr class="odd">
+<td>PC</td>
+<td>Pharmacokinetics Concentrations</td>
+</tr>
+<tr class="even">
+<td>PK</td>
+<td>薬物動態（学）（Pharmacokinetic （s））</td>
+</tr>
+<tr class="odd">
+<td>PP</td>
+<td>Pharmacokinetics Parameters</td>
+</tr>
+<tr class="even">
+<td>SDTM</td>
+<td>Study Data Tabulation Model</td>
+</tr>
+<tr class="odd">
+<td>PPK</td>
+<td>母集団薬物動態解析（Population Pharmacokinetics）</td>
+</tr>
+<tr class="even">
+<td>WinNonlin</td>
+<td>Phoenix・WinNonlin（NCA用の解析ソフト）</td>
+</tr>
+<tr class="odd">
+<td>TLF(s) またはTLG(s)</td>
+<td>図表及び一覧表（Table Listing Figures, Table Listing Graph）</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -291,12 +374,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "コピーしました");
+    button.setAttribute("title", "Copied!");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "コピーしました");
+      button.setAttribute("data-bs-title", "Copied!");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -475,7 +558,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">はじめに</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

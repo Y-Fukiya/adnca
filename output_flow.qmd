@@ -1,7 +1,9 @@
-## TLG作成の事例
+## TLG事例/Table output(Atorus's style)
+
+### 必要なパッケージの準備
 
 ```{r}
-#| label: output-packages
+#| label: output-packages1
 #| warning: false
 # CRAN から入手可能なパッケージ
 ##############################
@@ -28,10 +30,7 @@ pacman::p_load(
   # スタイルテーブル関連パッケージ
   ################################
   huxtable,  # html,LaTeX,rtf,docx,xlsx and pptxへ変換可能なスタイル
-  
-  # 図表関連パッケージ
-  ####################
-  patchwork, # 複数の図表をまとめられるパッケージ
+  flextable,
   
   # 出力形式関連パッケージ
   ########################
@@ -39,13 +38,23 @@ pacman::p_load(
 )
 ```
 
+### データの読み込み
+
 ```{r}
-#| label: nca2
+#| label: output-import1
 #| warning: false
 
 nca  <- import("./output/nca.sas7bdat")
 adsl <- import("./output/adsl.xpt")
 adnca <- import("./output/adnca.xpt")
+```
+
+### table作成プロセス
+
+```{r}
+#| label: output-process1
+#| warning: false
+#| tbl-cap: Astronomical object
 
 nca_t  <- nca %>% 
   pivot_longer(  -c(SUBJID,TRT01A)
@@ -149,8 +158,10 @@ ht <- nca_summary2 %>%
 ht
 ```
 
+### rtf作成プロセス
+
 ```{r}
-#| label: nca3
+#| label: output-rtf1
 #| warning: false
 
 doc <- pharmaRTF::rtf_doc(ht) %>% 
@@ -174,69 +185,5 @@ doc <- pharmaRTF::rtf_doc(ht) %>%
   pharmaRTF::set_ignore_cell_padding(TRUE) %>% 
   pharmaRTF::set_column_header_buffer(top=1)
 
-pharmaRTF::write_rtf(doc, file='./output/table_14.2.01.rtf')
-
-################################################################################
-
-p1 <- adnca %>% 
-  filter(TRT01A=="Xanomeline Low Dose" & 
-        PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
-  ggplot(.,aes(x=MRRLT,y=AVAL,group=SUBJID))+
-  theme_set(theme_classic()) +
-  geom_line(aes(linetype = SUBJID))+
-  ggtitle("Linier view") +
-  xlab("Time (h)")+
-  coord_cartesian(xlim = c(0, 25))+
-  ylab("Concentration (mg/L)")+
-  theme_bw()+ 
-  theme(legend.position = "none",plot.title = element_text(hjust = 0.5)) 
-
-p2<- adnca %>% 
-  filter(TRT01A=="Xanomeline Low Dose" & 
-        PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
-  ggplot(.,aes(x=MRRLT,y=AVAL,group=SUBJID))+
-  theme_set(theme_classic()) +
-  geom_line(aes(linetype = SUBJID))+
-  geom_abline(intercept = log10(0.01), slope = 0,linetype = 2) +
-  annotate("text", x=17, y=0.02, label="BLQ")+
-  ggtitle("Semilogarithmic view") +
-  xlab("Time (h)")+
-  coord_cartesian(xlim = c(0, 25))+
-  scale_y_continuous(trans='log10')+
-  ylab("Concentration (mg/L)")+
-  theme_bw()+ 
-  theme(legend.position = "none",plot.title = element_text(hjust = 0.5))
-
-p1 + p2
-
-p3 <- adnca %>% 
-  filter(TRT01A=="Xanomeline High Dose" & 
-        PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
-  ggplot(.,aes(x=MRRLT,y=AVAL,group=SUBJID))+
-  theme_set(theme_classic()) +
-  geom_line(aes(linetype = SUBJID))+
-  ggtitle("Linier view") +
-  xlab("Time (h)")+
-  coord_cartesian(xlim = c(0, 25))+
-  ylab("Concentration (mg/L)")+
-  theme_bw()+ 
-  theme(legend.position = "none",plot.title = element_text(hjust = 0.5)) 
-
-p4 <- adnca %>% 
-  filter(TRT01A=="Xanomeline High Dose" & 
-        PARAMCD=="XAN" & ATPTREF=="Day 1") %>%
-  ggplot(.,aes(x=MRRLT,y=AVAL,group=SUBJID))+
-  theme_set(theme_classic()) +
-  geom_line(aes(linetype = SUBJID))+
-  geom_abline(intercept = log10(0.01), slope = 0,linetype = 2) +
-  annotate("text", x=17, y=0.02, label="BLQ")+
-  ggtitle("Semilogarithmic view") +
-  xlab("Time (h)")+
-  coord_cartesian(xlim = c(0, 25))+
-  scale_y_continuous(trans='log10')+
-  ylab("Concentration (mg/L)")+
-  theme_bw()+ 
-  theme(legend.position = "none",plot.title = element_text(hjust = 0.5)) 
-
-p3 + p4
+pharmaRTF::write_rtf(doc, file='./output/table14.2.01.rtf')
 ```

@@ -1,5 +1,7 @@
 ## NCA実施の事例
 
+### 必要なパッケージの準備
+
 ```{r}
 #| label: nca-packages
 #| warning: false
@@ -27,6 +29,8 @@ pacman::p_load(
   ncar        # NonCompartの拡張版
 )
 ```
+
+### NCA算出プロセス
 
 ```{r}
 #| label: nca

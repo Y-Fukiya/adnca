@@ -46,17 +46,18 @@ pacman::p_load(
 pwd <- here::here()
 nca  <- import(paste(pwd,"output/nca.sas7bdat",sep="/"))
 adsl <- import(paste(pwd,"output/adsl.xpt",sep="/"))
-adpc <- import(paste(pwd,"output/adpc.xpt",sep="/"))
+adnca <- import(paste(pwd,"output/adnca.xpt",sep="/"))
 
-adpc$AVISIT <- char2factor(adpc,"AVISIT","AVISITN")
+adnca$AVISIT <- char2factor(adnca,"AVISIT","AVISITN")
 
-tbl <- adpc %>% 
+tbl <- adnca %>% 
   filter(PARAMCD == "XAN") %>% 
   univar(colvar = "ARMCD", 
          rowvar = "AVAL", 
          rowbyvar = "AVISIT",
          tablebyvar = "PARAM",
          decimal = 4)
+
 knitr::kable(tbl)
 
 #lyt <- rtables::basic_table() %>%
@@ -74,3 +75,65 @@ knitr::kable(tbl)
 #adlb <- formatters::ex_adlb
 #adlb <- dplyr::filter(adlb, PARAMCD == "ALT", AVISIT != "SCREENING")
 #tern::g_lineplot(adlb, adsl, subtitle = "Laboratory Test:")
+
+nca  <- import("./output/nca.sas7bdat")
+adsl <- import("./output/adsl.xpt")
+adnca <- import("./output/adnca.xpt")
+
+nca_t  <- nca %>% 
+  pivot_longer(  -c(SUBJID,TRT01A)
+               , names_to = "PARAMCD"
+               , values_to = "AVAL") %>%
+  mutate(TRT01A = factor( TRT01A
+                         ,c( "Xanomeline Low Dose"
+                            ,"Xanomeline High Dose")))
+
+prec_data <- tibble::tribble(
+  ~PARAMCD, ~max_int, ~max_dec,
+  "CMAX"    ,   2, 1,
+  "AUCLST"  ,   4, 1,
+  "AUCIFO"  ,   4, 1,
+  "TMAX"    ,   2, 2,
+  "MRTEVIFO",   3, 1,
+  "LAMZHL"  ,   2, 2,
+  ) %>%
+  mutate(PARAMCD = factor(PARAMCD
+                          ,c( "CMAX","AUCLST","AUCIFO"
+                             ,"TMAX","LAMZHL","MRTEVIFO")))
+
+header_data <- adsl %>%
+  filter(
+    SAFFL == "Y" & 
+    TRT01A %in% c("Xanomeline Low Dose","Xanomeline High Dose")) %>%
+  mutate(
+    TRT01A = factor( TRT01A
+                    ,c( "Xanomeline Low Dose"
+                       ,"Xanomeline High Dose"))) %>%
+  group_by(TRT01A) %>%
+  summarise(n=n()) 
+
+nca_summary <- nca_t %>%
+  filter(PARAMCD %in% c( "CMAX","AUCLST","AUCIFO"
+                        ,"TMAX","MRTEVIFO","LAMZHL")) %>%
+  mutate(PARAMCD = factor( PARAMCD
+                          ,c( "CMAX","AUCLST","AUCIFO"
+                             ,"TMAX","LAMZHL","MRTEVIFO"))) %>%
+  univar(colvar = "TRT01A", 
+         rowvar = "AVAL", 
+         tablebyvar = "PARAMCD",
+         statlist = statlist(c("N","MEANSD","CV","GeoMEAN","MEDIAN","RANGE")),
+         decimal = 4)
+
+tbl <- bind_table(nca_summary,tablebyvar="PARAMCD")
+
+gentlg(huxme = tbl,
+       orientation = "portrait",
+       file = "./output/table_14.2.01_1",
+       title = "PK Parameter summary",
+       footers = "xxxxxxxxxxxxxxxxxxxxxx",
+       colspan = list(c("", "Xanomeline","Xanomeline")),
+       colheader = c("","Low","High"),
+       wcol=.30
+)
+
+

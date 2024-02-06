@@ -1,10 +1,11 @@
-# 用語/略語 {.unnumbered}
+# 用語・略語
 
 ```{r}
 #| label: glossary
 #| echo: false
 #| warning: false
 #| output: false
+
 rm(list=ls()); gc();  gc();
 options(repos = "https://cran.ism.ac.jp/")
 if (!requireNamespace("renv"  , quietly = T)) {install.packages("renv")}
@@ -15,16 +16,39 @@ pacman::p_load( googlesheets4
                ,rio
                ,tidyverse
                ,gt
+               
                ,gtExtras
                ,DT
                ,tinytex
                )
 
-#tinytex::install_tinytex()
-#tinytex::tlmgr_install("haranoaji") # フォントのインストール
-
 #t <- googlesheets4::read_sheet("1oEVwlBYODvPJ6dNl5ACvrzG6Zwtqyf3FmPf2ETqX0Bo")
 #t |>
 #  gt::gt()
-
 ```
+
+| 略語/用語           | 説明                                                                                           |
+|------------------|-------------------------------------------------------------|
+| ADaM                | Analysis Data Model                                                                            |
+| ADME                | Absorption（吸収）、Distribution （布）、Metabolism（代謝） and Excretion（排泄）              |
+| ADNCA               | Analysis Dataset for Non-compartmental analysis                                                |
+| ADPC                | Analysis Dataset for Pharmacokinetics Concentrations                                           |
+| ADPP                | Analysis Dataset for Pharmacokinetics Parameters                                               |
+| BE                  | 生物学的同等性（Bioequivalence）                                                               |
+| BLQ                 | 定量下限未満 （Below Lower limit-of Quantification）                                           |
+| CDISC               | Clinical Data Interchange Standards Consortium                                                 |
+| CRF                 | 症例報告書（Case Report Form）                                                                 |
+| СТ                  | Controlled Terminology                                                                         |
+| DDI                 | 棊物間相互作用（Drug-DrugInteraction）                                                         |
+| EDC                 | 電子的臨床検査情報収集（Electronic Data Capture）                                              |
+| Full-PK             | 個々の被験者でトラフなど特定の時期に限定せずに投与後のさまざまな時間帯に採血を行うことによる薬 |
+| h                   | Hour （WinNonlin 上はhrとなるがCTの用語に合わせた）                                            |
+| LLOQ                | 定量下限（Lower Limit Of Quantification）                                                      |
+| NCA                 | ノンコンパートメント解析                                                                       |
+| PC                  | Pharmacokinetics Concentrations                                                                |
+| PK                  | 薬物動態（学）（Pharmacokinetic （s））                                                        |
+| PP                  | Pharmacokinetics Parameters                                                                    |
+| SDTM                | Study Data Tabulation Model                                                                    |
+| PPK                 | 母集団薬物動態解析（Population Pharmacokinetics）                                              |
+| WinNonlin           | Phoenix・WinNonlin（NCA用の解析ソフト）                                                        |
+| TLF(s) またはTLG(s) | 図表及び一覧表（Table Listing Figures, Table Listing Graph）                                   |
